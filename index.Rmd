@@ -1,0 +1,11 @@
+---
+title: "index"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+### Introduction
+THe Spotify dataset by year contains data from 1922 to 2021, collected by Yamac Eren using Spotify's web API. The dataset contains information on acousticness, danceability, duration, etc.
