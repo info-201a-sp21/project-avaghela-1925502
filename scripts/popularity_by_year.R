@@ -13,9 +13,15 @@ data_by_year <- data_by_year_long %>%
 x <- data_by_year$year
 y <- data_by_year$popularity
 
-popularity_by_year <- ggplot(data_by_year, aes(x, y)) +
+
+
+popularity_by_year <- function(df) {
+  ggplot(data = df, aes(x, y)) +
   geom_point() +
   theme_minimal() +
+  ggtitle("Change in Music Popularity over the Years") +
   xlab("Year") +
   ylab ("Popularity") +
   geom_smooth(method=lm, se=FALSE)
+}
+

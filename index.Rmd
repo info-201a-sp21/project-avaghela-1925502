@@ -9,3 +9,38 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ### Introduction
 THe Spotify dataset by year contains data from 1922 to 2021, collected by Yamac Eren using Spotify's web API. The dataset contains information on acousticness, danceability, duration, etc.
+
+
+
+
+
+```{r include=FALSE}
+# Source in the other script
+source("scripts/popularity_by_year.R")
+
+# Global Data
+df = read.csv("data/Spotify/data_by_year_o.csv")
+
+# Loading `knitr` library
+library(knitr)
+
+```
+Below you will find different visualizations that show how music has played a
+role in U.S. history.
+
+### Popularity by Year
+
+Below you will find a chart that shows a scatter plot visualization of how 
+music popularity has changed throughout the years. 
+
+```{r, echo=FALSE}
+popularity_by_year(df)
+```
+
+We choose to use a scatter plot to show data because it best demonstrated the 
+trend in music popularity. We found that the overall music popularity has seen 
+a continuous increase over the years and has continued to become a more 
+prominent part of our culture. The scatter plot shows a strong positive 
+correlation between the popularity of music (y-axis) over the years (x-axis) 
+and we included a line of best fit to show the general trend. 
+
