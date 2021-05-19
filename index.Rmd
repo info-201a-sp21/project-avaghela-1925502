@@ -10,13 +10,10 @@ knitr::opts_chunk$set(echo = TRUE)
 ### Introduction
 THe Spotify dataset by year contains data from 1922 to 2021, collected by Yamac Eren using Spotify's web API. The dataset contains information on acousticness, danceability, duration, etc.
 
-
-
-
-
 ```{r include=FALSE}
-# Source in the other script
+# Source in the other scripts
 source("scripts/popularity_by_year.R")
+source("scripts/dance_instrumental.R")
 
 # Global Data
 df = read.csv("data/Spotify/data_by_year_o.csv")
@@ -25,8 +22,7 @@ df = read.csv("data/Spotify/data_by_year_o.csv")
 library(knitr)
 
 ```
-Below you will find different visualizations that show how music has played a
-role in U.S. history.
+Below you will find different visualizations that show how music has played a role in U.S. history.
 
 ### Popularity by Year
 
@@ -44,3 +40,10 @@ prominent part of our culture. The scatter plot shows a strong positive
 correlation between the popularity of music (y-axis) over the years (x-axis) 
 and we included a line of best fit to show the general trend. 
 
+### Danceability and Instrumentalness by Year
+
+```{r, echo=FALSE}
+inst_dance_chart(df)
+```
+
+We chose to use a stacked bar chart as the intent was to compare the overall change in "danceability" and "instrumentalness" of music over time, to see if there exist a relationship between "danceability" and "instrumentalness". Based on the chart, we found that from 1921 to 2020, there seems to be no significant change in "danceability". However, there is clearly a downward trend in "instrumentalness".
