@@ -5,7 +5,7 @@ library("plotly")
 library("lintr")
 library("tidyverse")
 
-data_by_year_long <- read.csv("/Users/Arjun/Desktop/Info 201/project-avaghela-1925502/data/Spotify/data_by_year_o.csv")
+data_by_year_long <- read.csv("data/Spotify/data_by_year_o.csv")
 
 data_by_year <- data_by_year_long %>% 
   select(year, popularity) 
