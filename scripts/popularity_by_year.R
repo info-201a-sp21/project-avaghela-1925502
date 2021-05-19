@@ -13,7 +13,7 @@ data_by_year <- data_by_year_long %>%
 x <- data_by_year$year
 y <- data_by_year$popularity
 
-ggplot(data_by_year, aes(x, y)) +
+popularity_by_year <- ggplot(data_by_year, aes(x, y)) +
   geom_point() +
   theme_minimal() +
   xlab("Year") +
