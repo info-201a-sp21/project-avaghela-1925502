@@ -15,12 +15,16 @@ THe Spotify dataset by year contains data from 1922 to 2021, collected by Yamac 
 source("scripts/summary_table.R")
 source("scripts/popularity_by_year.R")
 source("scripts/dance_instrumental.R")
+source("scripts/loudness_by_year.R")
 
 # Global Data
 df = read.csv("data/Spotify/data_by_year_o.csv")
 
 # Loading `knitr` library
 library(knitr)
+library("tidyverse")
+library("ggplot2")
+library("dplyr")
 
 ```
 ## Summary Table
@@ -29,6 +33,7 @@ It displays the averages for various categories of all music for each respective
 decade. This table shows us that over the decades, music has gotten less 
 acoustic, instrumental, and live. But, it has increased in danceability, energy,
 loudness, and tempo.
+
 ```{r echo=FALSE}
 kable(table_summary(df))
 ```
@@ -44,7 +49,7 @@ music popularity has changed throughout the years.
 popularity_by_year(df)
 ```
 
-We choose to use a scatter plot to show data because it best demonstrated the 
+>We chose to use a scatter plot to show data because it best demonstrated the 
 trend in music popularity. We found that the overall music popularity has seen 
 a continuous increase over the years and has continued to become a more 
 prominent part of our culture. The scatter plot shows a strong positive 
@@ -57,4 +62,18 @@ and we included a line of best fit to show the general trend.
 inst_dance_chart(df)
 ```
 
-We chose to use a stacked bar chart as the intent was to compare the overall change in "danceability" and "instrumentalness" of music over time, to see if there exist a relationship between "danceability" and "instrumentalness". Based on the chart, we found that from 1921 to 2020, there seems to be no significant change in "danceability". However, there is clearly a downward trend in "instrumentalness".
+>We chose to use a stacked bar chart as the intent was to compare the overall change in "danceability" and "instrumentalness" of music over time, to see if there exist a relationship between "danceability" and "instrumentalness". Based on the chart, we found that from 1921 to 2020, there seems to be no significant change in "danceability". However, there is clearly a downward trend in "instrumentalness".
+
+### Loudness by Year
+
+```{r, echo=FALSE}
+plot_loudness_year(df)
+```
+
+>We chose to use a line graph with a smooth line to clearly visualize the change
+in the loudness of music (dB) over time. The smoothline further aids the audience
+to capture the overall trend of the loudness level of music from 1921 to 2020.
+From our observation, we discovered that the change in loudness level from the early
+1920s to 1950s was very dynamic, ranging from -19.275dB to -13.864. Also, the smooth
+line conveys that the overall loudness level of music has been gradually increasing,
+reaching its maximum level of -6.595067dB  in year 2020.
