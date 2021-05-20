@@ -12,6 +12,7 @@ THe Spotify dataset by year contains data from 1922 to 2021, collected by Yamac 
 
 ```{r include=FALSE}
 # Source in the other scripts
+source("scripts/summary_table.R")
 source("scripts/popularity_by_year.R")
 source("scripts/dance_instrumental.R")
 
@@ -22,6 +23,16 @@ df = read.csv("data/Spotify/data_by_year_o.csv")
 library(knitr)
 
 ```
+## Summary Table
+Below shows a table on the progression of music throughout the decades.
+It displays the averages for various categories of all music for each respective
+decade. This table shows us that over the decades, music has gotten less 
+acoustic, instrumental, and live. But, it has increased in danceability, energy,
+loudness, and tempo.
+```{r echo=FALSE}
+kable(table_summary(df))
+```
+
 Below you will find different visualizations that show how music has played a role in U.S. history.
 
 ### Popularity by Year
