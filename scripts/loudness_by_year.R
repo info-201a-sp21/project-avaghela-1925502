@@ -11,6 +11,4 @@ plot_loudness_year <- function(df) {
     labs(y = "Loudness (dB)", x = "Year"))
 }
 
-test = read.csv("data/Spotify/data_by_year_o.csv")
-
 
