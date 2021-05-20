@@ -8,7 +8,7 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 ### Introduction
-THe Spotify dataset by year contains data from 1922 to 2021, collected by Yamac Eren using Spotify's web API. The dataset contains information on acousticness, danceability, duration, etc.
+The Spotify dataset by year contains data from 1922 to 2021, collected by Yamac Eren using Spotify's web API. The dataset contains information on acousticness, danceability, duration, etc.
 
 ```{r include=FALSE}
 # Source in the other scripts
@@ -41,7 +41,7 @@ and beneficial to note. First, the number of rows in the data frame is
 data frame, the average length of songs this century is `r summary[4]` ms. 
 The most common key used throughout the century was the key of `r summary[2]`. 
 Interestingly, the year in which music was the loudest was `r summary[5]`. 
-Finally, the highest amount of danceibility recorded in the dataset was 
+Finally, the highest amount of danceability recorded in the data set was 
 `r summary[1]`.
 
 ## Summary Table
