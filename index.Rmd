@@ -30,7 +30,7 @@ library("dplyr")
 ## Summary Table
 Below shows a table on the progression of music throughout the decades.
 It displays the averages of various categories for music in its respective 
-decade. For example, in 1970, 40% of all music was acoustic.This table shows us 
+decade. For example, in the 1970s, 40% of all music was acoustic.This table shows us 
 that over the decades, music has gotten less acoustic, instrumental, and live. 
 But, it has increased in danceability, energy, loudness, and tempo.
 
