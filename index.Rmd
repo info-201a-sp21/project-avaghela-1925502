@@ -29,13 +29,20 @@ library("dplyr")
 
 ```
 
-### Summary information regarding Spotify dataset
+### Summary information
 
 ```{r, include=FALSE}
 summary <- get_summary_info(df)
 ```
 
-When using this data set there are a few things which are both interesting and beneficial to note. First, the number of rows in the data frame is `r summary[3]` which each correlate to the years from 1922-2021. Throughout the data frame, the average length of songs this century is `r summary[4]` ms. The most common key used throughout the century was the key of `r summary[2]`. Interestingly, the year in which music was the loudest was `r summary[5]`. Finally, the highest amount of danceibility recorded in the dataset was `r summary[1]`.
+When using this data set there are a few things which are both interesting 
+and beneficial to note. First, the number of rows in the data frame is 
+`r summary[3]` which each correlate to the years from 1922-2021. Throughout the 
+data frame, the average length of songs this century is `r summary[4]` ms. 
+The most common key used throughout the century was the key of `r summary[2]`. 
+Interestingly, the year in which music was the loudest was `r summary[5]`. 
+Finally, the highest amount of danceibility recorded in the dataset was 
+`r summary[1]`.
 
 ## Summary Table
 Below shows a table on the progression of music throughout the decades.
