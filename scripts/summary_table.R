@@ -31,14 +31,16 @@ table_summary <- function(df) {
       instrumentalness_pct, liveness_pct, loudness, tempo, key,
       duration_minutes
     )
-
+  # Rounds entire dataframe to the nearest tenth
   df <- round_df(df, 1)
+  # Converting numeric musical key scale to letter form
   decade_keys <- df %>% 
     pull(key)
   music_keys <- c("C", "C#/Db","D", "D#/Eb","E", "F", "F#/Gb", "G", "G#/Ab", "A", 
                   "A#/Bb","B")
   song_key <- decade_keys + 1
   common_key <- music_keys[song_key]
+  #Add music keys back to dataframe
   df <- df %>%
     mutate(key = common_key)
 
