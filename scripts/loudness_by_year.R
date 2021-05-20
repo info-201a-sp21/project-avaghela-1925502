@@ -13,8 +13,4 @@ plot_loudness_year <- function(df) {
 
 test = read.csv("data/Spotify/data_by_year_o.csv")
 
-min_year <- min(test$year)
 
-max_year <- max(test$year)
-
-max(test$loudness)
