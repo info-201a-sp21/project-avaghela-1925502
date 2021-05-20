@@ -15,6 +15,7 @@ THe Spotify dataset by year contains data from 1922 to 2021, collected by Yamac 
 source("scripts/popularity_by_year.R")
 source("scripts/dance_instrumental.R")
 source("scripts/loudness_by_year.R")
+source("scripts/summary_info.R")
 
 # Global Data
 df = read.csv("data/Spotify/data_by_year_o.csv")
@@ -26,6 +27,14 @@ library("ggplot2")
 library("dplyr")
 
 ```
+### Summary information regarding Spotify dataset
+
+```{r, include=FALSE}
+summary <- get_summary_info(df)
+```
+
+When using this data set there are a few things which are both interesting and beneficial to note. First, the number of rows in the data frame is `r summary[3]` which each correlate to the years from 1922-2021. Throughout the data frame, the average length of songs this century is `r summary[4]` ms. The most common key used throughout the century was the key of `r summary[2]`. Interestingly, the year in which music was the loudest was `r summary[5]`. Finally, the highest amount of danceibility recorded in the dataset was `r summary[1]`.
+
 Below you will find different visualizations that show how music has played a role in U.S. history.
 
 ### Popularity by Year
