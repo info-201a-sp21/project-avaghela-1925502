@@ -35,7 +35,7 @@ table_summary <- function(df) {
   df <- round_df(df, 1)
   decade_keys <- df %>% 
     pull(key)
-  music_keys <- c("C", "C#/Db","D", "D#","E", "F", "F#/Gb", "G", "G#/Ab", "A", 
+  music_keys <- c("C", "C#/Db","D", "D#/Eb","E", "F", "F#/Gb", "G", "G#/Ab", "A", 
                   "A#/Bb","B")
   song_key <- decade_keys + 1
   common_key <- music_keys[song_key]
