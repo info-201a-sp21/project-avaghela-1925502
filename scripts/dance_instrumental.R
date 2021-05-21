@@ -10,7 +10,8 @@ library("styler")
 inst_dance_chart <- function(data) {
   data_by_year_long <- data %>%
     select(year, danceability, instrumentalness) %>% # select relevant columns
-    gather(variable, measure, -year) # Reshaped dataframe so there's only 1 fill variable.
+    # Reshaped dataframe so there's only 1 fill variable.
+    gather(variable, measure, -year)
 
   chart <- ggplot(data_by_year_long) +
     geom_col(
@@ -18,8 +19,9 @@ inst_dance_chart <- function(data) {
     ) +
     labs(
       title = "Danceability and Instrumentalness From 1921 to 2020",
-      y = "Danceability and Instrumentalness Index (0.0 to 1.0" # Renamed title and y-axis label
-    ) +
+      # Renamed title and y-axis label
+      y = "Danceability and Instrumentalness Index (0.0 to 1.0"
+      ) +
     scale_x_continuous(
       name = "Year",
       n.breaks = 10 # Specified number of breaks for x-axis--easier to look at
@@ -27,7 +29,8 @@ inst_dance_chart <- function(data) {
     scale_fill_manual(
       name = "Audio Features",
       labels = c("Danceability", "Instrumentalness"),
-      values = c("#80B1D3", "#FDB462") # Renamed legend labels and changed colors
+      # Renamed legend labels and changed colors
+      values = c("#80B1D3", "#FDB462")
     )
 
   return(chart)
