@@ -4,9 +4,6 @@ library("dplyr")
 library("ggplot2")
 library("tidyr")
 
-# Read in data
-data_by_year <- read.csv("data/Spotify/data_by_year_o.csv")
-
 # Stacked bar chart
 inst_dance_chart <- function(data) {
   data_by_year_long <- data %>% 

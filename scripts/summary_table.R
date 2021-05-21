@@ -6,10 +6,9 @@ library(dplyr)
 library(scales)
 library(forestmangr)
 library(stringr)
-data_by_year <- read.csv("data/Spotify/data_by_year_o.csv")
 
 table_summary <- function(df) {
-  df <- data_by_year %>%
+  df <- df %>%
     mutate(
       decade = floor(year / 10) * 10, # convert year to decade
       duration_minutes = round(duration_ms / 60000, 2),   # ms to minutes
@@ -31,8 +30,18 @@ table_summary <- function(df) {
       instrumentalness_pct, liveness_pct, loudness, tempo, key,
       duration_minutes
     )
-
+  # Rounds entire dataframe to the nearest tenth
   df <- round_df(df, 1)
+  # Converting numeric musical key scale to letter form
+  decade_keys <- df %>% 
+    pull(key)
+  music_keys <- c("C", "C#/Db","D", "D#/Eb","E", "F", "F#/Gb", "G", "G#/Ab", "A", 
+                  "A#/Bb","B")
+  song_key <- decade_keys + 1
+  common_key <- music_keys[song_key]
+  #Add music keys back to dataframe
+  df <- df %>%
+    mutate(key = common_key)
 
   df <- df %>%
     # Labeling columns

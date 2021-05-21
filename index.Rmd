@@ -1,5 +1,5 @@
 ---
-title: "index"
+title: "Analysis on Audio Features of Songs From 1921 to 2020"
 output: html_document
 ---
 
@@ -8,7 +8,8 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 ### Introduction
-THe Spotify dataset by year contains data from 1922 to 2021, collected by Yamac Eren using Spotify's web API. The dataset contains information on acousticness, danceability, duration, etc.
+The Spotify dataset by year contains data from 1921 to 2020, collected by Yamac Eren using Spotify's web API. The dataset consists of six different csv files and a json file. For the
+mid
 
 ```{r include=FALSE}
 # Source in the other scripts
@@ -26,26 +27,27 @@ library(knitr)
 library("tidyverse")
 library("ggplot2")
 library("dplyr")
+library("forestmangr")
 
 ```
 
-### Summary information
+### Summary Information
 
 ```{r, include=FALSE}
 summary <- get_summary_info(df)
 ```
 
-When using this data set there are a few things which are both interesting 
+>When using this data set there are a few things which are both interesting 
 and beneficial to note. First, the number of rows in the data frame is 
-`r summary[3]` which each correlate to the years from 1922-2021. Throughout the 
+`r summary[3]` which each correlate to the years from 1921-2020. Throughout the 
 data frame, the average length of songs this century is `r summary[4]` ms. 
 The most common key used throughout the century was the key of `r summary[2]`. 
-Interestingly, the year in which music was the loudest was `r summary[5]`. 
-Finally, the highest amount of danceibility recorded in the dataset was 
+Interestingly, the year in which music was the least loud was `r summary[5]`. 
+Finally, the highest amount of danceability recorded in the data set was 
 `r summary[1]`.
 
-## Summary Table
-Below shows a table on the progression of music throughout the decades.
+### Summary Table
+>Below shows a table on the progression of music throughout the decades.
 It displays the averages of various categories for music in its respective 
 decade. For example, in the 1970s, 40% of all music was acoustic.This table shows us 
 that over the decades, music has gotten less acoustic, instrumental, and live. 
@@ -55,14 +57,15 @@ But, it has increased in danceability, energy, loudness, and tempo.
 kable(table_summary(df))
 ```
 
-Below you will find different visualizations that show how music has played a role in U.S. history.
+
+## Data Visualization of Audio Features and Popularity of Music
 
 ### Popularity by Year
 
 Below you will find a chart that shows a scatter plot visualization of how 
 music popularity has changed throughout the years. 
 
-```{r, echo=FALSE}
+```{r, echo=FALSE, message = FALSE}
 popularity_by_year(df)
 ```
 
@@ -75,6 +78,9 @@ and we included a line of best fit to show the general trend.
 
 ### Danceability and Instrumentalness by Year
 
+Below you will find a chart that shows a bar representation of how 
+the danceability and instrumentalness features have changed over the years. 
+
 ```{r, echo=FALSE}
 inst_dance_chart(df)
 ```
@@ -83,7 +89,10 @@ inst_dance_chart(df)
 
 ### Loudness by Year
 
-```{r, echo=FALSE}
+Below you will find a chart that shows a linear representation of how 
+the loudness features (dB) has changed over the years.
+
+```{r, echo=FALSE, message = FALSE}
 plot_loudness_year(df)
 ```
 

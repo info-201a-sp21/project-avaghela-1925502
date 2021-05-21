@@ -11,8 +11,8 @@ get_summary_info <- function(df) {
     summarise(count_keys = n()) %>%
     filter(count_keys == max(count_keys)) %>%
     pull(key)
-  music_keys <- c("C", "C#/Db", "D", "D#/Eb","E", "F", "F#/Gb", "G", "G#/Ab", "A", "A#/Bb",
-                  "B")
+  music_keys <- c("C", "C#/Db", "D", "D#/Eb","E", "F", "F#/Gb", "G", "G#/Ab",
+                  "A", "A#/Bb","B")
   song_key <- most_common_key + 1
   common_key <- music_keys[song_key]
   number_rows <- nrow(df)
