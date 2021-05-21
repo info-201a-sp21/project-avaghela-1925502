@@ -6,10 +6,9 @@ library(dplyr)
 library(scales)
 library(forestmangr)
 library(stringr)
-data_by_year <- read.csv("data/Spotify/data_by_year_o.csv")
 
 table_summary <- function(df) {
-  df <- data_by_year %>%
+  df <- df %>%
     mutate(
       decade = floor(year / 10) * 10, # convert year to decade
       duration_minutes = round(duration_ms / 60000, 2),   # ms to minutes
@@ -68,4 +67,3 @@ table_summary <- function(df) {
     )
   return(df)
 }
-test_df <- table_summary(data_by_year)

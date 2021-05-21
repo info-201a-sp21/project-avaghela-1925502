@@ -1,9 +1,6 @@
 # load and install packages
 library(dplyr)
 
-# load data
-data_by_year <- read.csv("data/Spotify/data_by_year_o.csv")
-
 # Create summary function
 get_summary_info <- function(df) {
   highest_dancability <- df %>%
@@ -33,3 +30,5 @@ get_summary_info <- function(df) {
                     "The loudest year" = year_lowest_loudness)
   return(summary_info)
 }
+
+round(duration_ms / 60000, 2)
