@@ -8,7 +8,9 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 ### Introduction
-The Spotify dataset by year contains data from 1921 to 2020, collected by Yamac Eren using Spotify's web API. The dataset consists of six different csv files and a json file. 
+>The Spotify dataset contains data from 1921 to 2020, collected by Yamac Eren using Spotify's web API. The dataset consists of six different csv files and a json file. This report mainly focuses on the **'data_by_year_o.csv'** file to analyze the trend of some of the audio features of the songs in
+the dataset. Through summary information and table, this analysis highlights several interesting data points in the dataset, and the three different
+charts provide insights on some of the relationships between the features such as popularity, instrumentalness, danceability, and loudness.
 
 ```{r include=FALSE}
 # Source in the other scripts
@@ -32,7 +34,7 @@ library("forestmangr")
 
 ### Summary Information
 
-```{r, include=FALSE}
+```{r, include=FALSE, message = FALSE, warning = FALSE}
 summary <- get_summary_info(df)
 ```
 
@@ -52,7 +54,7 @@ decade. For example, in the 1970s, 40% of all music was acoustic. This table sho
 that over the decades, music has gotten less acoustic, instrumental, and live. 
 But, it has increased in danceability, energy, loudness, and tempo.
 
-```{r echo=FALSE}
+```{r echo=FALSE, message = FALSE, warning = FALSE}
 kable(table_summary(df))
 ```
 
@@ -64,7 +66,7 @@ kable(table_summary(df))
 Below you will find a chart that shows a scatter plot visualization of how 
 music popularity has changed throughout the years. 
 
-```{r, echo=FALSE, message = FALSE}
+```{r, echo=FALSE, message = FALSE, warning = FALSE}
 popularity_by_year(df)
 ```
 
@@ -80,7 +82,7 @@ and we included a line of best fit to show the general trend.
 Below you will find a chart that shows a bar representation of how 
 the danceability and instrumentalness features have changed over the years. 
 
-```{r, echo=FALSE}
+```{r, echo=FALSE, message = FALSE, warning = FALSE}
 inst_dance_chart(df)
 ```
 
@@ -91,7 +93,7 @@ inst_dance_chart(df)
 Below you will find a chart that shows a linear representation of how 
 the loudness features (dB) has changed over the years.
 
-```{r, echo=FALSE, message = FALSE}
+```{r, echo=FALSE, message = FALSE, warning = FALSE}
 plot_loudness_year(df)
 ```
 
