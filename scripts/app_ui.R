@@ -1,12 +1,18 @@
 library("shiny")
 library("ggplot2")
+library("plotly")
+library("shinyWidgets")
+
 
 # Central ui chunk
 
 ui <- fluidPage(
   #includeCSS("style.css"), # Need to make the file style.css
   navbarPage("Main Title...",
-    tabPanel("Tab 1", tab_1),
+    tabPanel("Scatter",
+             titlePanel("Music Popularity"),
+             tab_1,
+             setBackgroundColor("#F0F8FF")),
     tabPanel("Tab 2", tab_2),
     tabPanel("Tab 3", tab_3)
   )
@@ -15,11 +21,15 @@ ui <- fluidPage(
 # Tab 1
 
 tab_1 <- sidebarLayout(
+  
   sidebarPanel(  
-    h1("This is a placeholder")
+    sliderInput("slider", "Select Range:", min = 1921, 
+                max = 2020, value = c(1921,2020), step = 2)
   ),
   mainPanel(
-    h1("placeholder")
+    plotlyOutput(
+      outputId = "scatter"
+    )
   )
 )
 
@@ -60,3 +70,4 @@ tab_3 <- sidebarLayout(
     h1("placeholder")
   )
 )
+

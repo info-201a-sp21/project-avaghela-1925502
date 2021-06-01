@@ -1,15 +1,22 @@
-library("Shiny")
+library("shiny")
 library("ggplot2")
 library("dplyr")
 library("tidyr")
+library("plotly")
+library("leaflet")
+library("tidyverse")
+
+
 
 # Read in data
 
-data_by_year <- read.csv("data/Spotify/data_by_year_o.csv")
+data_by_year <- read.csv("../data/Spotify/data_by_year_o.csv")
 
 
-# chart 1
+# Popularity by Year Chart
 
+pop_by_year <- data_by_year %>%
+  select(year, popularity)
 
 # Instrument vs Danceability Chart
 
@@ -19,6 +26,28 @@ data_by_year_long <- data_by_year %>%
   gather(variable, measure, -year)
 
 server <- function(input, output) {
+  output$scatter <- renderPlotly({
+    
+    new_data_pop <- pop_by_year %>%
+      filter(year >= min(input$slider) & year <= max(input$slider))
+    
+    Year <- new_data_pop$year
+    Popularity <- new_data_pop$popularity
+    
+    plot1 <- ggplot(data = new_data_pop, aes(year, popularity)) +
+      geom_point(size = 1) +
+      theme_minimal() +
+      ggtitle("Change in Music Popularity from 1921-2020") +
+      xlab("Year") +
+      ylab ("Popularity") +
+      geom_smooth(method=lm, se=FALSE) + 
+      theme(panel.background = element_rect(fill = "#ADD8E6",
+                                        colour = "lightcyan1",
+                                        size = 0.5, linetype = "solid"))
+    
+    return(plot1)
+  })
+  
   output$inst_dance_chart <- renderPlot({
     plot <-  ggplot(data_by_year_long) +
       geom_col(
