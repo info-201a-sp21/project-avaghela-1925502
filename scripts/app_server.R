@@ -25,6 +25,10 @@ data_by_year_long <- data_by_year %>%
   # Reshaped dataframe so there's only 1 fill variable.
   gather(variable, measure, -year)
 
+# Loudness by Year Chart
+loud_by_year <- data_by_year %>%
+  select(year, loudness)
+
 server <- function(input, output) {
   output$scatter <- renderPlotly({
     
@@ -49,7 +53,7 @@ server <- function(input, output) {
   })
   
   output$inst_dance_chart <- renderPlot({
-    plot <-  ggplot(data_by_year_long) +
+    plot2 <-  ggplot(data_by_year_long) +
       geom_col(
         mapping = aes(x = year, y = measure, fill = variable) # Create chart
       ) +
@@ -69,8 +73,28 @@ server <- function(input, output) {
         values = c("#80B1D3", "#FDB462")
       )
     
-    return(plot)
+    return(plot2)
   })
+  output$loudness_chart <- renderPlotly({
+    
+    filtered_data <- loud_by_year %>%
+      filter(year >= min(input$yearRange) & 
+               year <= max(input$yearRange))
+
+    plot3 <- ggplot(data = filtered_data, aes(x = year, y = loudness)) + 
+                 geom_line() +
+                 geom_smooth() +
+                 ggtitle("The Trend of Loudness of Music Over Time") +
+                 labs(y = "Loudness (dB)", x = "Year")
+  
+                 ggplotly()
+                 
+    
+    return(plot3)
+    
+    
+  })
+
 }
 
 

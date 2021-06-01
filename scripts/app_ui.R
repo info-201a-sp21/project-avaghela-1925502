@@ -14,7 +14,9 @@ ui <- fluidPage(
              tab_1,
              setBackgroundColor("#F0F8FF")),
     tabPanel("Tab 2", tab_2),
-    tabPanel("Tab 3", tab_3)
+    tabPanel("Trend of Loudness Feature",
+             titlePanel("Music Loudness from 1921 to 2020"),
+             tab_3)
   )
 )
 
@@ -62,12 +64,28 @@ tab_2 <- sidebarLayout(
 
 # Tab 3
 
+# data for loudness range
+
+
+
 tab_3 <- sidebarLayout(
   sidebarPanel(
-    h1("Placeholder")
+    h1(""),
+    sliderInput(
+      inputId = "yearRange",
+      label = "Choose the input year",
+      min = 1921,
+      max = 2020,
+      value = c(1921, 2020),
+      step = 1
+    )
   ),
   mainPanel(
-    h1("placeholder")
+    h1("Loudness Graph"),
+    plotlyOutput(
+      outputId = "loudness_chart"
+    )
+    
   )
 )
 
