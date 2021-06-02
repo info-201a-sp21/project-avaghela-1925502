@@ -22,12 +22,18 @@ data_by_year_long <- data_by_year %>%
   # Reshaped dataframe so there's only 1 fill variable.
   gather(variable, measure, -year)
 
+# Instrument vs Danceability Chart for summary
+
+dance_instrumental_data <- data_by_year %>%
+  select(year, danceability, instrumentalness)
+
 
 # Loudness by Year Chart
 loud_by_year <- data_by_year %>%
   select(year, loudness)
 
-# chart 3 stuff 
+# chart 3 stuff
+
 
 
 
@@ -119,8 +125,43 @@ server <- function(input, output) {
     
     
   })
+  output$popularity_summary <- renderTable({
+    filtered_pop_table <- pop_by_year %>%
+    mutate(decade = floor(year/10)*10) %>%
+    group_by(decade) %>%
+    summarise(popularity = mean(popularity))
+    return(filtered_pop_table)
+  })
+  
+  output$popularity_summary <- renderTable({
+    filtered_loud_table <- loud_by_year %>%
+      mutate(decade = floor(year/10)*10) %>%
+      group_by(decade) %>%
+      summarise(loudness = mean(loudness))
+    return(filtered_loud_table)
+  })
+  
+  output$instrumental_dance_comp <- renderPlotly({
+    dance_minus_instrumental <- dance_instrumental_data %>%
+    mutate(diff = danceability - instrumentalness)
+    
+    slider_data <- dance_minus_instrumental %>%
+      filter(year >= min(input$years) & 
+               year <= max(input$years))
+    
+    plot_difference <- ggplot(data = slider_data, aes(year, diff)) +
+      geom_point(size = 1) +
+      theme_minimal() +
+      xlab("Year") +
+      ylab ("Difference") +
+      geom_smooth(method=lm, color = "black", se=FALSE) +
+      geom_line(color = "white") +
+      theme(panel.background = element_rect(fill = "pink3",
+                                            colour = "black",
+                                            size = 0.5, linetype = "solid"))
+    plot_difference
+    return(plot_difference)
+  })
 
 }
-
-
 

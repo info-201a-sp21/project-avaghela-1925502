@@ -17,7 +17,8 @@ ui <- fluidPage(
     tabPanel("Tab 2", tab_2),
     tabPanel("Trend of Loudness Feature",
              titlePanel("Music Loudness from 1921 to 2020"),
-             tab_3)
+             tab_3),
+    tabPanel("Summary", tab_4)
   )
 )
 
@@ -91,18 +92,41 @@ tab_3 <- sidebarLayout(
   )
 )
 
-# Central ui chunk
+# Tab 4 summary
+tab_4 <- fluidPage(tabsetPanel(
+  tabPanel("tab 1", tab_4_popularity),
+  tabPanel("tab 2", tab_4_difference),
+  tabPanel("tab 3", "contents"))) 
 
-ui <- fluidPage(
-  #includeCSS("style.css"), # Need to make the file style.css
-  navbarPage("Main Title...",
-             tabPanel("Scatter",
-                      titlePanel("Music Popularity"),
-                      tab_1,
-                      setBackgroundColor("#F0F8FF")),
-             tabPanel("Tab 2", tab_2),
-             tabPanel("Tab 3", tab_3)
+tab_4_popularity <- sidebarLayout(
+  sidebarPanel(
+    p("Popularity of music throughout the decades")
+  ),
+  mainPanel(
+    tableOutput(outputId = "popularity_summary")
   )
 )
+
+tab_4_difference <- sidebarLayout(
+  sidebarPanel(
+    h1(""),
+    sliderInput(
+      inputId = "years",
+      label = "Choose years:",
+      min = 1921,
+      max = 2020,
+      value = c(1921, 2020),
+      step = 1
+    )
+  ),
+  mainPanel(
+    p("The calculated difference in danceability and instrumentalness 
+       from 1921-2020"),
+    plotlyOutput(
+      outputId = "instrumental_dance_comp")
+  )
+)
+  
+  
 
 
