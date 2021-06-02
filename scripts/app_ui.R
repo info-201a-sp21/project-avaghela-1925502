@@ -29,12 +29,12 @@ tab_overview <-
         <div class='container'>
         <h1>How Has Music Changed Over the Past Century?</h1>
           <p>
-          As a group we decided to explore the development of music throughout the years. Our reasoning
-          was that we all had an interest in this field. Collectively we wanted to address key questions
-          relating to how music has evolved over time such as, its popularity, loudness, and
+          As a group we decided to explore the development of music throughout the past century. The reason why we decided
+          to do this was that we all had an interest in this field. Collectively we wanted to address key questions
+          relating to how music has evolved over time such as, popularity, loudness, and
           danceability/instrumenalness. Using a <a href = 'https://www.kaggle.com/yamaerenay/spotify-dataset-19212020-160k-tracks?select=data_by_year_o.csv'>
-          Spotify dataset</a> aggregated by Yamac Eren Ay, we were able to provide
-          you visualizations to the questions we had.
+          Spotify dataset</a> aggregated by Yamac Eren Ay, we were able to curate visualizations to make interpreting the evolution of music
+          easier.
           </p>
           </div>
           </body>")
