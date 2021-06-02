@@ -9,14 +9,14 @@ library("styler")
 # Central ui chunk
 
 ui <- fluidPage(
-  includeCSS("style.css"), # Need to make the file style.css
+  includeCSS("style.css"),
   navbarPage(
     "Music Data",
-    tabPanel(
-      "Overview",
-      titlePanel("How Has Music Changed Over the Past Century?"),
-      tab_overview
-    ),
+    # tabPanel(
+    #   "Overview",
+    #   titlePanel("How Has Music Changed Over the Past Century?"),
+    #   tab_overview
+    # ),
     tabPanel(
       "Music Popularity by Year",
       titlePanel("Music Popularity"),
@@ -26,8 +26,8 @@ ui <- fluidPage(
     tabPanel("Tab 2", tab_2),
     tabPanel("Trend of Loudness Feature",
              titlePanel("Music Loudness from 1921 to 2020"),
-             tab_3),
-    tabPanel("Summary", tab_4)
+             tab_3)#,
+    # tabPanel("Summary", tab_4)
   )
 )
 # Overview Tab
@@ -105,7 +105,8 @@ tab_2 <- sidebarLayout(
     # ) # date range doesn't seem to work very well
   ),
   mainPanel(
-    plotOutput(
+    #plotOutput(
+    plotlyOutput(
       outputId = "inst_dance_chart"
     )
   )

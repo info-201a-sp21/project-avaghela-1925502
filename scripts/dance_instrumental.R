@@ -31,7 +31,13 @@ inst_dance_chart <- function(data) {
       labels = c("Danceability", "Instrumentalness"),
       # Renamed legend labels and changed colors
       values = c("#80B1D3", "#FDB462")
+    ) +
+    scale_y_continuous(
+      breaks = seq(0, 1.5, by = 0.1),
+      limits = c(0, 1.5)
     )
 
   return(chart)
 }
+
+inst_dance_chart(data_by_year)
