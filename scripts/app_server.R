@@ -59,7 +59,7 @@ server <- function(input, output) {
   
   output$inst_dance_chart <- renderPlot({
 
-    plot2 <-  ggplot(data_by_year_long) +
+    # plot2 <-  ggplot(data_by_year_long) +
 
     if(input$rad_btn_c2 == "Danceability") {
       data_input_based <- filter(data_by_year_long, variable == "danceability")
@@ -98,8 +98,9 @@ server <- function(input, output) {
         #values = c("#80B1D3", "#FDB462")
       )
     
-    return(plot2)
+    return(plot)
   })
+  
   output$loudness_chart <- renderPlotly({
     
     filtered_data <- loud_by_year %>%

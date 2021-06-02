@@ -8,17 +8,17 @@ library("shinyWidgets")
 # Central ui chunk
 
 ui <- fluidPage(
-  #includeCSS("style.css"), # Need to make the file style.css
-  navbarPage("Main Title...",
-    tabPanel("Scatter",
-             titlePanel("Music Popularity"),
-             tab_1,
-             setBackgroundColor("#F0F8FF")),
-    tabPanel("Tab 2", tab_2),
-    tabPanel("Trend of Loudness Feature",
-             titlePanel("Music Loudness from 1921 to 2020"),
-             tab_3)
-  )
+ #includeCSS("style.css"), # Need to make the file style.css
+ navbarPage("Main Title...",
+   tabPanel("Scatter",
+            titlePanel("Music Popularity"),
+            tab_1,
+            setBackgroundColor("#F0F8FF")),
+   tabPanel("Tab 2", tab_2),
+   tabPanel("Trend of Loudness Feature",
+            titlePanel("Music Loudness from 1921 to 2020"),
+            tab_3)
+ )
 )
 
 
@@ -64,11 +64,7 @@ tab_2 <- sidebarLayout(
   )
 )
 
-# Tab 3
-
 # data for loudness range
-
-
 
 tab_3 <- sidebarLayout(
   sidebarPanel(
