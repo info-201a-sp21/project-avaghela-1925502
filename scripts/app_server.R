@@ -43,6 +43,17 @@ loud_by_year <- data_by_year %>%
 server <- function(input, output) {
   output$scatter <- renderPlotly({
     
+    if(input$rad_btn_c1 == "Blue") {
+      fill_color <- "steelblue1"
+      colour_fill <- "lightcyan1"
+    }else if(input$rad_btn_c1 == "Red") {
+      fill_color <- "tomato"
+      colour_fill <- "mistyrose"
+    }else if(input$rad_btn_c1 == "Green") {
+      fill_color <- "seagreen3"
+      colour_fill <- "aquamarine"
+    }
+    
     new_data_pop <- pop_by_year %>%
       filter(year >= min(input$slider) & year <= max(input$slider))
     
@@ -54,10 +65,10 @@ server <- function(input, output) {
       theme_minimal() +
       ggtitle("Change in Music Popularity from 1921-2020") +
       xlab("Year") +
-      ylab ("Popularity") +
-      geom_smooth(method=lm, se=FALSE) + 
-      theme(panel.background = element_rect(fill = "#ADD8E6",
-                                            colour = "lightcyan1",
+      ylab ("Popularity (0-100)") +
+      geom_smooth(method=lm, se=FALSE, color = colour_fill) + 
+      theme(panel.background = element_rect(fill = fill_color,
+                                            colour = colour_fill,
                                             size = 0.5, linetype = "solid"))
     
     return(plot1)

@@ -11,14 +11,14 @@ library("styler")
 ui <- fluidPage(
   includeCSS("style.css"), # Need to make the file style.css
   navbarPage(
-    "Main Title...",
+    "Music Data",
     tabPanel(
       "Overview",
       titlePanel("How Has Music Changed Over the Past Century?"),
       tab_overview
     ),
     tabPanel(
-      "Scatter",
+      "Music Popularity by Year",
       titlePanel("Music Popularity"),
       tab_1,
       setBackgroundColor("#F0F8FF")
@@ -55,12 +55,30 @@ tab_1 <- sidebarLayout(
     sliderInput("slider", "Select Range:",
       min = 1921,
       max = 2020, value = c(1921, 2020), step = 2
-    )
+    ),
+    radioButtons(
+      inputId = "rad_btn_c1",
+      label = "Select Theme:",
+      choices = list(
+        "Blue" = "Blue",
+        "Red" = "Red", "Green" = "Green"
+      )
+    )  
   ),
   mainPanel(
     plotlyOutput(
       outputId = "scatter"
-    )
+    ),
+    tags$div(id = "plot_1_message", 
+    "  Plot 1 is a scatter plot graph that shows the trend of the popularity of music over the years. This graphs reveals how 
+       music has changed along with our society with both increasing and decreasing levels of popularity. The plot includes a slider
+       in which you can change what year range you are viewing for and this allows for more specific years of music to be focused on
+       to find trends. The points on the plot are also interactive, showing both the year and popularity level when hovered over.",
+    br(),
+    br(),   
+    "   This plot successfully answers and demonstrates the question of how has the popularity of music changed over time by showing 
+       the relationship between music popularity and years.
+       ")  
   )
 )
 
