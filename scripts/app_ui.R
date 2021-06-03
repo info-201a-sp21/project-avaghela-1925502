@@ -5,46 +5,47 @@ library("shinyWidgets")
 library("styler")
 
 # Central ui chunk
+# ui <- fluidPage(
+#   includeCSS("style.css"),
+#   navbarPage(
+#     "Music Data",
+#     tabPanel(
+#       "Overview",
+#       titlePanel("How Has Music Changed Over the Past Century?"),
+#       tab_overview
+#     ),
+#     tabPanel(
+#       "Music Popularity by Year",
+#       titlePanel("Music Popularity"),
+#       tab_1,
+#       setBackgroundColor("#F0F8FF")
+#     ),
+#     tabPanel(
+#       "Danceability vs. Instrumentalness",
+#       titlePanel("Danceability vs. Instrumentalness"),
+#       tab_2
+#     ),
+#     tabPanel("Trend of Loudness Feature",
+#              titlePanel("Music Loudness from 1921 to 2020"),
+#              tab_3),
+#     tabPanel("Summary", tab_4)
+#   )
+# )
 
-ui <- fluidPage(
-  includeCSS("style.css"),
-  navbarPage(
-    "Music Data",
-    tabPanel(
-      "Overview",
-      titlePanel("How Has Music Changed Over the Past Century?"),
-      tab_overview
-    ),
-    tabPanel(
-      "Music Popularity by Year",
-      titlePanel("Music Popularity"),
-      tab_1,
-      setBackgroundColor("#F0F8FF")
-    ),
-    tabPanel(
-      "Danceability vs. Instrumentalness",
-      titlePanel("Danceability vs. Instrumentalness"),
-      tab_2
-    ),
-    tabPanel("Trend of Loudness Feature",
-             titlePanel("Music Loudness from 1921 to 2020"),
-             tab_3),
-    tabPanel("Summary", tab_4)
-  )
-)
+
 
 # Overview Tab
 
 tab_overview <- sidebarLayout(
   sidebarPanel(
     tags$div(
-      id = "Overview_paragrah",
+      id = "overview_paragrah",
       "As a group we decided to explore the development of music throughout the past century. The reason why we decided
       to do this was that we all had an interest in this field. Collectively we wanted to address key questions
       relating to how music has evolved over time such as, popularity, loudness, and
       danceability/instrumenalness. Using a ",
       a(href = 'https://www.kaggle.com/yamaerenay/spotify-dataset-19212020-160k-tracks?select=data_by_year_o.csv',
-        "Spotify dataset"), 
+        "Spotify dataset"),
       "aggregated by Yamac Eren Ay, we were able to curate visualizations to make interpreting the evolution of music
       easier"
     )
@@ -237,4 +238,29 @@ tab_4 <- tabsetPanel(
      tab_4_loudness
   )
 )
-
+ui <- fluidPage(
+  #includeCSS("style.css"),
+  navbarPage(
+    "Music Data",
+    tabPanel(
+      "Overview",
+      titlePanel("How Has Music Changed Over the Past Century?"),
+      tab_overview
+    ),
+    tabPanel(
+      "Music Popularity by Year",
+      titlePanel("Music Popularity"),
+      tab_1,
+      setBackgroundColor("#F0F8FF")
+    ),
+    tabPanel(
+      "Danceability vs. Instrumentalness",
+      titlePanel("Danceability vs. Instrumentalness"),
+      tab_2
+    ),
+    tabPanel("Trend of Loudness Feature",
+             titlePanel("Music Loudness from 1921 to 2020"),
+             tab_3),
+    tabPanel("Summary", tab_4)
+  )
+)

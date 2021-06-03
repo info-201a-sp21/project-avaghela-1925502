@@ -7,7 +7,8 @@ library("tidyverse")
 
 # Read in data
 
-data_by_year <- read.csv("../data/Spotify/data_by_year_o.csv")
+#data_by_year <- read.csv("../data/Spotify/data_by_year_o.csv")
+data_by_year <- read.csv("data/data_by_year_o.csv")
 
 # Popularity by Year Chart
 

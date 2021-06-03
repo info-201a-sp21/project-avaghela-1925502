@@ -1,3 +1,9 @@
+* {
+  font-family: Bookman, URW Bookman L, serif;
+}
+h2 {
+  font-weight: bold;
+}
 #plot_1_message {
   color: Black;
   background-color: white;
