@@ -17,9 +17,8 @@ pop_by_year <- data_by_year %>%
 
 # Instrument vs Danceability Chart
 
-data_by_year_long <- data_by_year %>%
-  select(year, danceability, instrumentalness) %>% # select relevant columns
-  # Reshaped dataframe so there's only 1 fill variable.
+data_by_year_long <- data_by_year %>% # select + reshape dataframe.
+  select(year, danceability, instrumentalness) %>%
   rename(Danceability = danceability, Instrumentalness = instrumentalness) %>%
   gather(variable, measure, -year)
 
@@ -33,13 +32,7 @@ dance_instrumental_data <- data_by_year %>%
 loud_by_year <- data_by_year %>%
   select(year, loudness)
 
-# chart 3 stuff
-
-
-
-
 # Central server function
-
 
 server <- function(input, output) {
   output$scatter <- renderPlotly({

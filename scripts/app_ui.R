@@ -14,8 +14,8 @@ ui <- fluidPage(
     "Music Data",
     tabPanel(
       "Overview",
-      titlePanel("How Has Music Changed Over the Past Century?"),
-      tab_overview
+      titlePanel("How Has Music Changed Over the Past Century?")#,
+      #tab_overview
     ),
     tabPanel(
       "Music Popularity by Year",
@@ -23,11 +23,15 @@ ui <- fluidPage(
       tab_1,
       setBackgroundColor("#F0F8FF")
     ),
-    tabPanel("Tab 2", tab_2),
+    tabPanel(
+      "Danceability vs. Instrumentalness",
+      titlePanel("Danceability vs. Instrumentalness"),
+      tab_2
+    ),
     tabPanel("Trend of Loudness Feature",
              titlePanel("Music Loudness from 1921 to 2020"),
              tab_3),
-    tabPanel("Summary", tab_4)
+    tabPanel("Summary")#, tab_4)
   )
 )
 #Overview Tab
@@ -85,28 +89,27 @@ tab_1 <- sidebarLayout(
 
 tab_2 <- sidebarLayout(
   sidebarPanel(
-    radioButtons(
-      inputId = "rad_btn_c2", # this means radio button chart 2
+    radioButtons( 
+      inputId = "rad_btn_c2",
       label = "Select a variable(s)",
       choices = list(
         "Instrumentalness" = "Instrumentalness",
         "Danceability" = "Danceability", "Both" = "Both"
       )
-    ) # ,
-    # dateRangeInput(
-    #   inputId = "date_rng_c2", # date range input chart 2
-    #   label = "Choose a date range",
-    #   format = "yyyy",
-    #   start = "1921-01-01",
-    #   end = "2020-01-01",
-    #   min = "1921-01-01",
-    #   max = "2020-01-01"
-    # ) # date range doesn't seem to work very well
+    ) # this creates the button inputs
   ),
   mainPanel(
-    #plotOutput(
-    plotlyOutput(
-      outputId = "inst_dance_chart"
+    plotlyOutput(outputId = "inst_dance_chart"), # displays the chart
+    br(),
+    tags$div(
+      id = "plot_2_message",
+      "This bar chart is designed to compare the changes in overall danceability
+      of music with the changes in overall instrumentalness of music over time, 
+      in order to determine whether or not there exist a relationship between the two.
+      Observations from this chart reveals that from 1921 to 2020, there seems
+      to be a downward trend in instrumentalness of music, while danceability
+      remained relatively constant. This indicates that there might be no
+      relationship between instrumentalness and danceability."
     )
   )
 )
