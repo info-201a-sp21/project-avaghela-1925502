@@ -15,7 +15,7 @@ ui <- fluidPage(
     tabPanel(
       "Overview",
       titlePanel("How Has Music Changed Over the Past Century?"),
-      # tab_overview
+      tab_overview
     ),
     tabPanel(
       "Music Popularity by Year",
@@ -30,21 +30,21 @@ ui <- fluidPage(
     tabPanel("Summary", tab_4)
   )
 )
-# Overview Tab
-# tab_overview <- sidebarLayout(
-#   sidebarPanel(
-#     HTML("<p>
-#         As a group we decided to explore the development of music throughout the past century. The reason why we decided
-#           to do this was that we all had an interest in this field. Collectively we wanted to address key questions
-#           relating to how music has evolved over time such as, popularity, loudness, and
-#           danceability/instrumenalness. Using a <a href = 'https://www.kaggle.com/yamaerenay/spotify-dataset-19212020-160k-tracks?select=data_by_year_o.csv'>
-#           Spotify dataset</a> aggregated by Yamac Eren Ay, we were able to curate visualizations to make interpreting the evolution of music
-#           easier
-#       </p>")),
-#   mainPanel(
-#     img(src='concert.jpeg', height = '300px')
-#   )
-# )
+#Overview Tab
+tab_overview <- sidebarLayout(
+  sidebarPanel(
+    HTML("<p>
+        As a group we decided to explore the development of music throughout the past century. The reason why we decided
+          to do this was that we all had an interest in this field. Collectively we wanted to address key questions
+          relating to how music has evolved over time such as, popularity, loudness, and
+          danceability/instrumenalness. Using a <a href = 'https://www.kaggle.com/yamaerenay/spotify-dataset-19212020-160k-tracks?select=data_by_year_o.csv'>
+          Spotify dataset</a> aggregated by Yamac Eren Ay, we were able to curate visualizations to make interpreting the evolution of music
+          easier
+      </p>")),
+  mainPanel(
+    img(src='concert.jpeg', height = '300px')
+  )
+ )
 
 
 # Tab 1
@@ -134,10 +134,6 @@ tab_3 <- sidebarLayout(
 )
 
 # Tab 4 summary
-tab_4 <- fluidPage(tabsetPanel(
-  tabPanel("Popularity Insights", tab_4_popularity),
-  tabPanel("Dancibility/Instrumentalness Insights", tab_4_diff),
-  tabPanel("Loudness Insights", tab_4_loudness)))
 
 tab_4_popularity <- fluidPage(
   h2("Music popularity insights from 1921 - 2021:"),
@@ -206,4 +202,9 @@ tab_4_loudness <-fluidPage(
     )
   )
 )
+
+tab_4 <- fluidPage(tabsetPanel(
+  tabPanel("Popularity Insights", tab_4_popularity),
+  tabPanel("Dancibility/Instrumentalness Insights", tab_4_diff),
+  tabPanel("Loudness Insights", tab_4_loudness)))
 
