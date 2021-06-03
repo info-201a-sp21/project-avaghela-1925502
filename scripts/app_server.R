@@ -3,7 +3,6 @@ library("ggplot2")
 library("dplyr")
 library("tidyr")
 library("plotly")
-library("leaflet")
 library("tidyverse")
 
 # Read in data
@@ -17,9 +16,8 @@ pop_by_year <- data_by_year %>%
 
 # Instrument vs Danceability Chart
 
-data_by_year_long <- data_by_year %>%
-  select(year, danceability, instrumentalness) %>% # select relevant columns
-  # Reshaped dataframe so there's only 1 fill variable.
+data_by_year_long <- data_by_year %>% # select + reshape dataframe.
+  select(year, danceability, instrumentalness) %>%
   rename(Danceability = danceability, Instrumentalness = instrumentalness) %>%
   gather(variable, measure, -year)
 
@@ -28,18 +26,11 @@ data_by_year_long <- data_by_year %>%
 dance_instrumental_data <- data_by_year %>%
   select(year, danceability, instrumentalness)
 
-
 # Loudness by Year Chart
 loud_by_year <- data_by_year %>%
   select(year, loudness)
 
-# chart 3 stuff
-
-
-
-
 # Central server function
-
 
 server <- function(input, output) {
   output$scatter <- renderPlotly({
@@ -107,19 +98,8 @@ server <- function(input, output) {
         limits = c(1920, 2021)
       ) +
       scale_fill_manual(
-        #name = "Audio Features",
         labels = legend_names,
-        #labels = c("Danceability", "Instrumentalness"),
-        # Renamed legend labels and changed colors
         values = bar_colors
-        #values = c("#80B1D3", "#FDB462")
-      #scale_fill_discrete(
-        #name = "Audio Features",
-        # labels = legend_names,
-        #labels = c("Danceability", "Instrumentalness"),
-        # Renamed legend labels and changed colors
-        #values = bar_colors
-        #values = c("#80B1D3", "#FDB462")
       ) +
       scale_y_continuous(
         breaks = seq(0, 1.2, by=0.1),
