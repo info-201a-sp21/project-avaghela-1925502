@@ -135,6 +135,8 @@ server <- function(input, output) {
     
     
   })
+  
+# popularity summary portion
   output$popularity_summary <- renderTable({
     filtered_pop_table <- pop_by_year %>%
     mutate(decade = floor(year/10)*10) %>%
@@ -143,6 +145,7 @@ server <- function(input, output) {
     return(filtered_pop_table)
   })
   
+# loudness summary portion  
   output$loudness_summary <- renderTable({
     filtered_loud_table <- loud_by_year %>%
       mutate(decade = floor(year/10)*10) %>%
@@ -151,6 +154,7 @@ server <- function(input, output) {
     return(filtered_loud_table)
   })
   
+# instrumentalness and danceability comparison plot 
   output$instrumental_dance_comp <- renderPlot({
     dance_minus_instrumental <- dance_instrumental_data %>%
     mutate(diff = danceability - instrumentalness)

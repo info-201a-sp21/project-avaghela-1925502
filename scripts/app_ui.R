@@ -154,8 +154,7 @@ tab_3 <- sidebarLayout(
   )
 )
 
-# Tab 4 summary
-
+# tab 4 popularity summary
 tab_4_popularity <- sidebarLayout(
   #h2("Music popularity insights from 1921 - 2021:"),
   sidebarPanel(
@@ -174,7 +173,7 @@ tab_4_popularity <- sidebarLayout(
   )
 )
 
-
+# tab 4 instrumentalness and dancibility summary
 tab_4_diff <-fluidPage(
   # h2("Instrumental and Danceability Insights:"),
   plotOutput(
@@ -202,7 +201,8 @@ tab_4_diff <-fluidPage(
     they should create music that has a better potential to sell."
   )  
 )
-  
+
+# tab 4 loudness summary
 tab_4_loudness <- sidebarLayout(
   #h2("Music loudness insights from 1921 - 2021:"),
   sidebarPanel(
@@ -223,6 +223,7 @@ tab_4_loudness <- sidebarLayout(
   )
 )
 
+# tab 4 all summaries
 tab_4 <- tabsetPanel(
   tabPanel(
     "Popularity Insights", 
@@ -240,6 +241,8 @@ tab_4 <- tabsetPanel(
      tab_4_loudness
   )
 )
+
+#central ui code
 ui <- fluidPage(
   includeCSS("style.css"),
   navbarPage(
