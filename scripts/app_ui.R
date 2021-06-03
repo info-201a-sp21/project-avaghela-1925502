@@ -140,7 +140,7 @@ tab_4 <- fluidPage(tabsetPanel(
   tabPanel("Loudness Insights", tab_4_loudness)))
 
 tab_4_popularity <- fluidPage(
-  titlePanel("Music popularity insights from 1921 - 2021:"),
+  h2("Music popularity insights from 1921 - 2021:"),
   sidebarLayout(
     sidebarPanel(
       p("This table displays the positive popularity trend throughout the 11 decades
@@ -152,7 +152,7 @@ tab_4_popularity <- fluidPage(
         public.")
     ),
     mainPanel(
-      tableOutput("popularity_summary")
+      tableOutput(outputId = "popularity_summary")
     )
   )
 )
@@ -186,7 +186,7 @@ tab_4_diff <-fluidPage(
 )
   
 tab_4_loudness <-fluidPage(
-  titlePanel("Music loudness insights from 1921 - 2021:"),
+  h2("Music loudness insights from 1921 - 2021:"),
   sidebarLayout(
     sidebarPanel(
       HTML("<p>
@@ -202,7 +202,7 @@ tab_4_loudness <-fluidPage(
       </p>")
     ),
     mainPanel(
-      tableOutput("loudness_summary")
+      tableOutput(outputId = "loudness_summary")
     )
   )
 )
