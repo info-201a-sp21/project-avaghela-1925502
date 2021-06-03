@@ -139,7 +139,9 @@ tab_3 <- sidebarLayout(
             br(),
             br(),
             "Users can interact with the graph by changing the input year on the slide bar widget
-            , which will allow them to observe the change in loudness level during the specified year range.")
+            , which will allow them to observe the change in loudness level during the specified year range.
+            This graph helps answer how the audio feature, loudness level specifically, has developed
+            over time in accordance with change in music trend and peoples' preferences")
   )
 )
 
