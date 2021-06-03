@@ -31,10 +31,17 @@ body {
 }
 
 #overview_paragraph .navbar-brand {
-  color: #fafafa
+  color: #fafafa;
   background-color: rgb(40, 40, 40);
 }
 .well {
   background-color: rgb(40, 40, 40);
   box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%), 0 6px 20px 0 rgb(0 0 0 / 19%);
+}
+.navbar-default .navbar-nav>li>a {
+  color: #fafafa
+}
+.navbar-brand {
+  font-weight: bolder;
+  color: white;
 }

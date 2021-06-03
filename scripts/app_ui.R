@@ -31,6 +31,8 @@ tab_overview <- sidebarLayout(
 
 tab_1 <- sidebarLayout(
   sidebarPanel(
+    chooseSliderSkin("Modern",
+                     color = "rgb(136,153,166)"),
     sliderInput("slider", "Select Range:",
       min = 1921,
       max = 2020, value = c(1921, 2020), step = 2
