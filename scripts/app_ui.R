@@ -78,7 +78,7 @@ tab_1 <- sidebarLayout(
     br(),   
     "   This plot successfully answers and demonstrates the question of how has the popularity of music changed over time by showing 
        the relationship between music popularity and years.
-       ")  
+       ")
   )
 )
 
@@ -130,7 +130,17 @@ tab_3 <- sidebarLayout(
     h1("Loudness Graph"),
     plotlyOutput(
       outputId = "loudness_chart"
-    )
+    ),
+    tags$div(id = "plot3_message",
+            "The chart below visualizes how the loudness feature (dB) of music has changed
+            over time. Each plot captures a specific loudness level of that year, the lines
+            that connect each plot represent an increase or a decrease of that level in between
+            the years, and the smooth line visualizes the overall trend of the loudness level
+            over time from years 1921 to 2020.",
+            br(),
+            br(),
+            "Users can interact with the graph by changing the input year on the slide bar widget
+            , which will allow them to observe the change in loudness level during the specified year range.")
   )
 )
 

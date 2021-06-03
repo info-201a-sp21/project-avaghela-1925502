@@ -135,11 +135,17 @@ server <- function(input, output) {
       filter(year >= min(input$yearRange) & 
                year <= max(input$yearRange))
 
+    fill_color2 = "lightgreen"
+    color_fill2 = "red"
     plot3 <- ggplot(data = filtered_data, aes(x = year, y = loudness)) + 
                  geom_line() +
+                 geom_point(size = 0.5) +
                  geom_smooth() +
                  ggtitle("The Trend of Loudness of Music Over Time") +
-                 labs(y = "Loudness (dB)", x = "Year")
+                 labs(y = "Loudness (dB)", x = "Year") +
+                 theme(panel.background = element_rect(fill = fill_color2,
+                                            colour = color_fill2,
+                                            size = 0.5, linetype = "solid"))
   
                  ggplotly()
                  
