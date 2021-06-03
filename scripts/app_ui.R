@@ -4,36 +4,6 @@ library("plotly")
 library("shinyWidgets")
 library("styler")
 
-# Central ui chunk
-# ui <- fluidPage(
-#   includeCSS("style.css"),
-#   navbarPage(
-#     "Music Data",
-#     tabPanel(
-#       "Overview",
-#       titlePanel("How Has Music Changed Over the Past Century?"),
-#       tab_overview
-#     ),
-#     tabPanel(
-#       "Music Popularity by Year",
-#       titlePanel("Music Popularity"),
-#       tab_1,
-#       setBackgroundColor("#F0F8FF")
-#     ),
-#     tabPanel(
-#       "Danceability vs. Instrumentalness",
-#       titlePanel("Danceability vs. Instrumentalness"),
-#       tab_2
-#     ),
-#     tabPanel("Trend of Loudness Feature",
-#              titlePanel("Music Loudness from 1921 to 2020"),
-#              tab_3),
-#     tabPanel("Summary", tab_4)
-#   )
-# )
-
-
-
 # Overview Tab
 
 tab_overview <- sidebarLayout(
