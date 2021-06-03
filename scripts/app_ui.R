@@ -40,18 +40,20 @@ tab_overview <- sidebarLayout(
   sidebarPanel(
     tags$div(
       id = "overview_paragrah",
-      "As a group we decided to explore the development of music throughout the past century. The reason why we decided
+      p("As a group we decided to explore the development of music throughout the past century. The reason why we decided
       to do this was that we all had an interest in this field. Collectively we wanted to address key questions
       relating to how music has evolved over time such as, popularity, loudness, and
       danceability/instrumenalness. Using a ",
       a(href = 'https://www.kaggle.com/yamaerenay/spotify-dataset-19212020-160k-tracks?select=data_by_year_o.csv',
         "Spotify dataset"),
       "aggregated by Yamac Eren Ay, we were able to curate visualizations to make interpreting the evolution of music
-      easier"
+      easier.")
     )
   ),
   mainPanel(
-    img(src='concert.jpeg', height = '300px')
+      img(
+        id = "picture",
+        src='concert.jpeg', height = '350px')
   )
 )
 
@@ -239,7 +241,7 @@ tab_4 <- tabsetPanel(
   )
 )
 ui <- fluidPage(
-  #includeCSS("style.css"),
+  includeCSS("style.css"),
   navbarPage(
     "Music Data",
     tabPanel(

@@ -1,11 +1,45 @@
 * {
+  color: #fafafa;
   font-family: Bookman, URW Bookman L, serif;
 }
-h2 {
+
+h1, h2, p {
+  color: #fafafa;
+}
+
+h1, h2 {
   font-weight: bold;
 }
+
 #plot_1_message {
   color: Black;
   background-color: white;
   padding: 5px;
 }
+.container-fluid {
+  background-color: rgb(64, 64, 64);
+  margin: 1vmin;
+  padding: 1vmin 1vmin 1vmin 1vmin;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%), 0 6px 20px 0 rgb(0 0 0 / 19%);
+}
+.navbar-default{
+  background-color: rgb(64, 64, 64);
+}
+body {
+  background-color: rgb(40, 40, 40);
+}
+
+#picture {
+  border-radius: 10px;
+}
+
+#overview_paragraph .navbar-brand {
+  color: #fafafa
+  background-color: rgb(40, 40, 40);
+}
+.well {
+  background-color: rgb(40, 40, 40);
+  box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%), 0 6px 20px 0 rgb(0 0 0 / 19%);
+}
+
