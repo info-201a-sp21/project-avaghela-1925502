@@ -21,7 +21,7 @@ source("scripts/loudness_by_year.R")
 source("scripts/summary_info.R")
 
 # Global Data
-df = read.csv("data/Spotify/data_by_year_o.csv")
+df <- read.csv("data/Spotify/data_by_year_o.csv")
 
 # Loading `knitr` library
 library(knitr)
