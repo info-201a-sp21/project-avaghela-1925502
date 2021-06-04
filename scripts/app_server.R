@@ -49,9 +49,6 @@ server <- function(input, output) {
     new_data_pop <- pop_by_year %>%
       filter(year >= min(input$slider) & year <= max(input$slider))
 
-    Year <- new_data_pop$year
-    Popularity <- new_data_pop$popularity
-
     plot1 <- ggplot(data = new_data_pop, aes(year, popularity)) +
       geom_point(size = 1) +
       theme_minimal() +
@@ -74,7 +71,8 @@ server <- function(input, output) {
       legend_names <- "Danceability"
       bar_colors <- "#80B1D3"
     } else if (input$rad_btn_c2 == "Instrumentalness") {
-      data_input_based <- filter(data_by_year_long, variable == "Instrumentalness")
+      data_input_based <- filter(data_by_year_long,
+                                 variable == "Instrumentalness")
       legend_names <- "Instrumentalness"
       bar_colors <- "#FDB462"
     } else if (input$rad_btn_c2 == "Both") {
@@ -95,7 +93,7 @@ server <- function(input, output) {
         fill = "Audio Features"
       ) +
       scale_x_continuous(
-        breaks = seq(1920, 2021, by = 10), # Specified number of breaks for x-axis
+        breaks = seq(1920, 2021, by = 10), # number of breaks for x-axis
         limits = c(1920, 2021)
       ) +
       scale_fill_manual(
@@ -158,7 +156,8 @@ server <- function(input, output) {
     dance_minus_instrumental <- dance_instrumental_data %>%
       mutate(diff = danceability - instrumentalness)
 
-    plot_difference <- ggplot(data = dance_minus_instrumental, aes(year, diff)) +
+    plot_difference <- ggplot(data = dance_minus_instrumental,
+                              aes(year, diff)) +
       geom_point(size = 1) +
       theme_minimal() +
       xlab("Year") +
