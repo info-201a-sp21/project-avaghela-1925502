@@ -7,7 +7,6 @@ library("tidyverse")
 
 # Read in data
 
-#data_by_year <- read.csv("../data/Spotify/data_by_year_o.csv")
 data_by_year <- read.csv("data/data_by_year_o.csv")
 
 # Popularity by Year Chart
@@ -17,7 +16,8 @@ pop_by_year <- data_by_year %>%
 
 # Instrument vs Danceability Chart
 
-data_by_year_long <- data_by_year %>% # select + reshape dataframe.
+data_by_year_long <- data_by_year %>%
+  # select + reshape dataframe.
   select(year, danceability, instrumentalness) %>%
   rename(Danceability = danceability, Instrumentalness = instrumentalness) %>%
   gather(variable, measure, -year)
@@ -35,54 +35,54 @@ loud_by_year <- data_by_year %>%
 
 server <- function(input, output) {
   output$scatter <- renderPlotly({
-    
-    if(input$rad_btn_c1 == "Blue") {
+    if (input$rad_btn_c1 == "Blue") {
       fill_color <- "steelblue1"
       colour_fill <- "lightcyan1"
-    }else if(input$rad_btn_c1 == "Red") {
+    } else if (input$rad_btn_c1 == "Red") {
       fill_color <- "tomato"
       colour_fill <- "mistyrose"
-    }else if(input$rad_btn_c1 == "Green") {
+    } else if (input$rad_btn_c1 == "Green") {
       fill_color <- "seagreen3"
       colour_fill <- "aquamarine"
     }
-    
+
     new_data_pop <- pop_by_year %>%
       filter(year >= min(input$slider) & year <= max(input$slider))
-    
+
     Year <- new_data_pop$year
     Popularity <- new_data_pop$popularity
-    
+
     plot1 <- ggplot(data = new_data_pop, aes(year, popularity)) +
       geom_point(size = 1) +
       theme_minimal() +
       ggtitle("Change in Music Popularity from 1921-2020") +
       xlab("Year") +
-      ylab ("Popularity (0-100)") +
-      geom_smooth(method=lm, se=FALSE, color = colour_fill) + 
-      theme(panel.background = element_rect(fill = fill_color,
-                                            colour = colour_fill,
-                                            size = 0.5, linetype = "solid"))
-    
+      ylab("Popularity (0-100)") +
+      geom_smooth(method = lm, se = FALSE, color = colour_fill) +
+      theme(panel.background = element_rect(
+        fill = fill_color,
+        colour = colour_fill,
+        size = 0.5, linetype = "solid"
+      ))
+
     return(plot1)
   })
-  
+
   output$inst_dance_chart <- renderPlotly({
-    
-    if(input$rad_btn_c2 == "Danceability") {
+    if (input$rad_btn_c2 == "Danceability") {
       data_input_based <- filter(data_by_year_long, variable == "Danceability")
-      legend_names <- "Danceability" 
+      legend_names <- "Danceability"
       bar_colors <- "#80B1D3"
-    }else if(input$rad_btn_c2 == "Instrumentalness") {
+    } else if (input$rad_btn_c2 == "Instrumentalness") {
       data_input_based <- filter(data_by_year_long, variable == "Instrumentalness")
-      legend_names <- "Instrumentalness" 
+      legend_names <- "Instrumentalness"
       bar_colors <- "#FDB462"
-    }else if(input$rad_btn_c2 == "Both") {
+    } else if (input$rad_btn_c2 == "Both") {
       data_input_based <- data_by_year_long
       legend_names <- c("Danceability", "Instrumentalness")
       bar_colors <- c("#80B1D3", "#FDB462")
     }
-    
+
     plot2 <- ggplotly(ggplot(data_input_based) +
       geom_col(
         mapping = aes(x = year, y = measure, fill = variable) # Create chart
@@ -95,7 +95,7 @@ server <- function(input, output) {
         fill = "Audio Features"
       ) +
       scale_x_continuous(
-        breaks = seq(1920, 2021, by=10), # Specified number of breaks for x-axis
+        breaks = seq(1920, 2021, by = 10), # Specified number of breaks for x-axis
         limits = c(1920, 2021)
       ) +
       scale_fill_manual(
@@ -103,74 +103,73 @@ server <- function(input, output) {
         values = bar_colors
       ) +
       scale_y_continuous(
-        breaks = seq(0, 1.2, by=0.1),
+        breaks = seq(0, 1.2, by = 0.1),
         limits = c(0, 1.2)
       ))
-    
+
     return(plot2)
   })
-  
-  output$loudness_chart <- renderPlotly({
-    
-    filtered_data <- loud_by_year %>%
-      filter(year >= min(input$yearRange) & 
-               year <= max(input$yearRange))
 
-    fill_color2 = "lightgreen"
-    color_fill2 = "red"
-    plot3 <- ggplot(data = filtered_data, aes(x = year, y = loudness)) + 
-                 geom_line() +
-                 geom_point(size = 0.5) +
-                 geom_smooth() +
-                 ggtitle("The Trend of Loudness of Music Over Time") +
-                 labs(y = "Loudness (dB)", x = "Year") +
-                 theme(panel.background = element_rect(fill = fill_color2,
-                                            colour = color_fill2,
-                                            size = 0.5, linetype = "solid"))
-  
-                 ggplotly()
-                 
-    
+  output$loudness_chart <- renderPlotly({
+    filtered_data <- loud_by_year %>%
+      filter(year >= min(input$yearRange) &
+        year <= max(input$yearRange))
+
+    fill_color2 <- "lightgreen"
+    color_fill2 <- "red"
+    plot3 <- ggplot(data = filtered_data, aes(x = year, y = loudness)) +
+      geom_line() +
+      geom_point(size = 0.5) +
+      geom_smooth() +
+      ggtitle("The Trend of Loudness of Music Over Time") +
+      labs(y = "Loudness (dB)", x = "Year") +
+      theme(panel.background = element_rect(
+        fill = fill_color2,
+        colour = color_fill2,
+        size = 0.5, linetype = "solid"
+      ))
+
+    ggplotly()
+
+
     return(plot3)
-    
-    
   })
-  
-# popularity summary portion
+
+  # popularity summary portion
   output$popularity_summary <- renderTable({
     filtered_pop_table <- pop_by_year %>%
-    mutate(decade = floor(year/10)*10) %>%
-    group_by(decade) %>%
-    summarise(popularity = mean(popularity))
+      mutate(decade = floor(year / 10) * 10) %>%
+      group_by(decade) %>%
+      summarise(popularity = mean(popularity))
     return(filtered_pop_table)
   })
-  
-# loudness summary portion  
+
+  # loudness summary portion
   output$loudness_summary <- renderTable({
     filtered_loud_table <- loud_by_year %>%
-      mutate(decade = floor(year/10)*10) %>%
+      mutate(decade = floor(year / 10) * 10) %>%
       group_by(decade) %>%
       summarise(loudness = mean(loudness))
     return(filtered_loud_table)
   })
-  
-# instrumentalness and danceability comparison plot 
+
+  # instrumentalness and danceability comparison plot
   output$instrumental_dance_comp <- renderPlot({
     dance_minus_instrumental <- dance_instrumental_data %>%
-    mutate(diff = danceability - instrumentalness)
-    
+      mutate(diff = danceability - instrumentalness)
+
     plot_difference <- ggplot(data = dance_minus_instrumental, aes(year, diff)) +
       geom_point(size = 1) +
       theme_minimal() +
       xlab("Year") +
-      ylab ("Difference") +
-      geom_smooth(method=lm, color = "black", se=FALSE) +
+      ylab("Difference") +
+      geom_smooth(method = lm, color = "black", se = FALSE) +
       geom_line(color = "white") +
-      theme(panel.background = element_rect(fill = "slategray2",
-                                            colour = "black",
-                                            size = 0.5, linetype = "solid"))
+      theme(panel.background = element_rect(
+        fill = "slategray2",
+        colour = "black",
+        size = 0.5, linetype = "solid"
+      ))
     return(plot_difference)
   })
-
 }
-

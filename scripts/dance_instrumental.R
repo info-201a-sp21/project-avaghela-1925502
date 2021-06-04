@@ -21,7 +21,7 @@ inst_dance_chart <- function(data) {
       title = "Danceability and Instrumentalness From 1921 to 2020",
       # Renamed title and y-axis label
       y = "Danceability and Instrumentalness Index (0.0 to 1.0"
-      ) +
+    ) +
     scale_x_continuous(
       name = "Year",
       n.breaks = 10 # Specified number of breaks for x-axis--easier to look at

@@ -11,7 +11,7 @@ table_summary <- function(df) {
   df <- df %>%
     mutate(
       decade = floor(year / 10) * 10, # convert year to decade
-      duration_minutes = round(duration_ms / 60000, 2),   # ms to minutes
+      duration_minutes = round(duration_ms / 60000, 2), # ms to minutes
       acousticness_pct = acousticness * 100,
       danceability_pct = danceability * 100,
       energy_pct = energy * 100,
@@ -33,13 +33,15 @@ table_summary <- function(df) {
   # Rounds entire dataframe to the nearest tenth
   df <- round_df(df, 1)
   # Converting numeric musical key scale to letter form
-  decade_keys <- df %>% 
+  decade_keys <- df %>%
     pull(key)
-  music_keys <- c("C", "C#/Db","D", "D#/Eb","E", "F", "F#/Gb", "G", "G#/Ab", "A", 
-                  "A#/Bb","B")
+  music_keys <- c(
+    "C", "C#/Db", "D", "D#/Eb", "E", "F", "F#/Gb", "G", "G#/Ab", "A",
+    "A#/Bb", "B"
+  )
   song_key <- decade_keys + 1
   common_key <- music_keys[song_key]
-  #Add music keys back to dataframe
+  # Add music keys back to dataframe
   df <- df %>%
     mutate(key = common_key)
 
